@@ -20,10 +20,10 @@ function generatePassword() {
 //need a way to stop function if no correct number value is chosen
   if (passwordLength < 8) {
     alert("Please enter a length of at least 8 characters.");
-return
+return "Try Again"
   } else if (passwordLength > 128) {
     alert("Please enter a length up to 128 characters.");
-    return
+    return "Try Again"
   } else {
     alert("Your password will be " + passwordLength + " characters long.");
   }
@@ -60,6 +60,12 @@ return
     alert("Your password will not have special characters")
   }
   console.log(hasSpecial)
+
+  if (hasLowercase === false && hasUppercase === false && hasNumeric === false && hasSpecial === false) {
+    alert("Please select at least one character type.");
+    return "Try Again"
+  }
+
   //create possible pool with user input
   if (hasLowercase) {
     characterPool = characterPool.concat(lowercaseCharacters);
@@ -77,6 +83,8 @@ return
     characterPool = characterPool.concat(specialCharacters);
     console.log(characterPool)
   }
+
+  //check to make sure at least 1 choi
 
   //generate random password from characterPool
   let randomizedPassword ="";
