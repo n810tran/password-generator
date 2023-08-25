@@ -7,19 +7,60 @@
 // Assignment Code
 const generateBtn = document.querySelector("#generate");
 
-// Define possibnle characters
-var specialCharacters = ['!' ,'"' ,'#' ,'$' ,'%' ,'&' ,"'" ,'(' ,')' ,'*' ,'+' ,',' ,'-' ,'.' ,'/' ,':' ,';' ,'<' ,'=' ,'>' ,'?' ,'@' ,'[' ,'\\' ,']' ,'^' ,'_' ,'`' ,'{' ,'|' ,'}' ,'~'];
-var numericCharacters = ['0' ,'1' ,'2' ,'3' ,'4' ,'5' ,'6' ,'7' ,'8' ,'9']
-var uppercaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+// Define possible characters in categories
 var lowercaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+var uppercaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var numericCharacters = ['0' ,'1' ,'2' ,'3' ,'4' ,'5' ,'6' ,'7' ,'8' ,'9']
+var specialCharacters = ['!' ,'"' ,'#' ,'$' ,'%' ,'&' ,"'" ,'(' ,')' ,'*' ,'+' ,',' ,'-' ,'.' ,'/' ,':' ,';' ,'<' ,'=' ,'>' ,'?' ,'@' ,'[' ,'\\' ,']' ,'^' ,'_' ,'`' ,'{' ,'|' ,'}' ,'~'];
+var possibleCharacters = []
 
+//Generate password with user input
 function generatePassword() {
-  passwordLength = prompt("How many characters in you password? Choose between 8 and 128 characters.");
-  if (passwordLength < 8) {
-    alert("Please enter a length of at lease 8 characters.")
+  passwordLength = prompt("How many characters would you like in you password? Choose between 8 and 128 characters.");
 
+  if (passwordLength < 8) {
+    alert("Please enter a length of at least 8 characters.");
+  } else if (passwordLength > 128) {
+    alert("Please enter a length up to 128 characters.");
+  } else {
+    alert("Your password will be " + passwordLength + " characters long.");
   }
+
+  hasLowercase = confirm("Do you want lowercase characters in your password?");
+
+  if (hasLowercase) {
+    alert("Your password will have lowercase characters.")
+  } else {
+    alert("Your password will not have lowercase characters")
+  }
+
+  hasUppercase = confirm("Do you want uppercase characters in your password");
+
+  if (hasUppercase) {
+    alert("Your password will have uppercase characters.")
+  } else {
+    alert("Your password will not have uppercase characters")
+  }
+
+  hasNumeric = confirm("Do you want numeric characters in your password?");
+
+  if (hasNumeric) {
+    alert("Your password will have numeric characters.")
+  } else {
+    alert("Your password will not have numeric characters")
+  }
+
+  hasSpecial = confirm("Do you want special characters in your password?");
+
+  if (hasSpecial) {
+    alert("Your password will have special characters.")
+  } else {
+    alert("Your password will not have special characters")
+  }
+
+
 }
+
 
 
 
