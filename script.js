@@ -12,20 +12,22 @@ var lowercaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'
 var uppercaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var numericCharacters = ['0' ,'1' ,'2' ,'3' ,'4' ,'5' ,'6' ,'7' ,'8' ,'9']
 var specialCharacters = ['!' ,'"' ,'#' ,'$' ,'%' ,'&' ,"'" ,'(' ,')' ,'*' ,'+' ,',' ,'-' ,'.' ,'/' ,':' ,';' ,'<' ,'=' ,'>' ,'?' ,'@' ,'[' ,'\\' ,']' ,'^' ,'_' ,'`' ,'{' ,'|' ,'}' ,'~'];
-var possibleCharacters = []
+var characterPool = []
 
 //Generate password with user input
 function generatePassword() {
   passwordLength = prompt("How many characters would you like in you password? Choose between 8 and 128 characters.");
-
+//need a way to stop function if no correct number value is chosen
   if (passwordLength < 8) {
     alert("Please enter a length of at least 8 characters.");
+return
   } else if (passwordLength > 128) {
     alert("Please enter a length up to 128 characters.");
+    return
   } else {
     alert("Your password will be " + passwordLength + " characters long.");
   }
-
+  console.log(passwordLength);
   hasLowercase = confirm("Do you want lowercase characters in your password?");
 
   if (hasLowercase) {
@@ -33,7 +35,7 @@ function generatePassword() {
   } else {
     alert("Your password will not have lowercase characters")
   }
-
+  console.log(hasLowercase)
   hasUppercase = confirm("Do you want uppercase characters in your password");
 
   if (hasUppercase) {
@@ -41,7 +43,7 @@ function generatePassword() {
   } else {
     alert("Your password will not have uppercase characters")
   }
-
+  console.log(hasUppercase)
   hasNumeric = confirm("Do you want numeric characters in your password?");
 
   if (hasNumeric) {
@@ -49,7 +51,7 @@ function generatePassword() {
   } else {
     alert("Your password will not have numeric characters")
   }
-
+  console.log(hasNumeric)
   hasSpecial = confirm("Do you want special characters in your password?");
 
   if (hasSpecial) {
@@ -57,8 +59,33 @@ function generatePassword() {
   } else {
     alert("Your password will not have special characters")
   }
+  console.log(hasSpecial)
+  //create possible pool with user input
+  if (hasLowercase) {
+    characterPool = characterPool.concat(lowercaseCharacters);
+    console.log(characterPool)
+  }
+  if (hasUppercase) {
+    characterPool = characterPool.concat(uppercaseCharacters);
+    console.log(characterPool)
+  }
+  if (hasNumeric) {
+    characterPool = characterPool.concat(numericCharacters);
+    console.log(characterPool)
+  }
+  if (hasSpecial) {
+    characterPool = characterPool.concat(specialCharacters);
+    console.log(characterPool)
+  }
 
-
+  //generate random password from characterPool
+  let randomizedPassword ="";
+  for (let i = 0; i < passwordLength; i++) {
+        let randomSelection = (Math.floor(Math.random() * characterPool.length));
+    console.log(characterPool[randomSelection]);
+    randomizedPassword = randomizedPassword + characterPool[randomSelection];
+  }
+  return randomizedPassword;
 }
 
 
